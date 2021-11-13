@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import { db } from './firebase';
+import firebase from './firebasedatabase';
 import { collection, getDocs } from 'firebase/firestore';
 
 function App(){
@@ -19,12 +19,12 @@ function App(){
     return (
         <div className="App"> 
             {users.map((user) => {
-                return( 
-                <div>
-                    {" "}
-                    <h1>Name: {user.name} </h1>
-                    <h1>Password: {user.password} </h1>
-                </div>
+                return ( 
+                    <div>
+                        {" "}
+                        <h1>Name: {user.name} </h1>
+                        <h1>Password: {user.password} </h1>
+                    </div>
                 );
             })}
         </div>
