@@ -2,12 +2,29 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 
+const fs = require('fs')
+
 const database = firebase.firestore();
 
 const clubCollection = database.collection('Clubs');
 
-var checkTags = () => {
+var checkTags = (checkTag) => {
+    
 
+    fs.readFile('./Tags.txt', 'utf8' , (err, data) => {
+        if (err) {
+            console.error(err)
+            return
+        }
+        tags = data.split("\n");
+        tags.foreach((curTag, index) => {
+            if(checkTag == curTag){
+                return true;
+            }
+        })
+    })
+
+    return false;
 }
 
 //Returns true if the club is already in the database
