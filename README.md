@@ -5,7 +5,7 @@
 Frontend: React with CSS for styling
 
 
-Backend: SQL Database
+Backend: Cloud Firestore
 
 
 Resources:
