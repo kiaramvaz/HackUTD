@@ -15,6 +15,7 @@ Tutorial :
 Frontend:
 
 https://www.youtube.com/watch?v=I2UBjN5ER4s&t=1s
+Hi it's Alex
 
 
 Fullstack:
