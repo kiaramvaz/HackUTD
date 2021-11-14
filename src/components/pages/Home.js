@@ -1,6 +1,7 @@
 import "../../App";
 import HeroSection from "../HeroSection";
 import React from 'react';
+import './Pages.css';
 
 
 

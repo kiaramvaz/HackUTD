@@ -24,53 +24,39 @@ function Navbar() {
 
   window.addEventListener('resize', showButton);
 
+
   return (
     <>
       <nav className='navbar'>
         <div className='navbar-container'>
-          <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-            CLUB HUB
-            <i class='fab fa-typo3' />
+          <Link to='/search' className='navbar-logo' onClick={closeMobileMenu}>
+          <i class='fas fa-meteor' />
+                UTD CLUB HUB
+            
           </Link>
           <div className='menu-icon' onClick={handleClick}>
             <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
           </div>
           <ul className={click ? 'nav-menu active' : 'nav-menu'}>
             <li className='nav-item'>
-              <Link to='/' className='nav-links' onClick={closeMobileMenu}>
-                Search
+              <Link to='/search' className='nav-links' onClick={closeMobileMenu}>
+              <i class="fas fa-search"></i>
+              Search
               </Link>
             </li>
             <li className='nav-item'>
-              <Link
-                to='/services'
-                className='nav-links'
-                onClick={closeMobileMenu}
-              >
-                YUH
+              <Link to='/logIn' className='nav-links' onClick={closeMobileMenu}>
+              <i class="fas fa-user"></i>
+                My clubs
               </Link>
             </li>
             <li className='nav-item'>
-              <Link
-                to='/products'
-                className='nav-links'
-                onClick={closeMobileMenu}
-              >
-                Products
-              </Link>
-            </li>
-
-            <li>
-              <Link
-                to='/sign-up'
-                className='nav-links-mobile'
-                onClick={closeMobileMenu}
-              >
-                Log in
+              <Link to='/admin' className='nav-links' onClick={closeMobileMenu}>
+              <i class="fas fa-users-cog"></i>
+                Admin
               </Link>
             </li>
           </ul>
-          {button && <Button buttonStyle='btn--outline'>Log in</Button>}
         </div>
       </nav>
     </>
