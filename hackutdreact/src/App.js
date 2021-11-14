@@ -2,7 +2,8 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import './App.css';
 import Home from './components/pages/Home';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Club from './components/pages/Club';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 
 
@@ -12,7 +13,7 @@ function App() {
       <Router>
         <Navbar />
         
-        <Home />
+        <Club />
 
       </Router>
     </>

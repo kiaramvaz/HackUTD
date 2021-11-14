@@ -7,6 +7,7 @@ import './HeroSection.css';
 const HeroSection = () => {
     return (
         <div className = 'hero-container'>
+
             <h1> ADVENTIREoefkf</h1>
             <p> What aregddjvk</p>
             <div className= "hero-btns"> </div>
