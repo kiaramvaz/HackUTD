@@ -1,34 +1,44 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import firebase from './firebasedatabase';
-import { collection, getDocs } from 'firebase/firestore';
 
-function App(){
+function Web(){
     const [users, setUsers] = useState([]);
-    const usersCollectionRef = collection(database, "Users")
+    const [loading, setLoading] = useState(false);
+
+    const ref = firebase.firestore().collection("users");
+
+    function getUsers() {
+        setLoading(true);
+        ref.onSnapshot((querySnapshot) => {
+            const items = [];
+            querySnapshot.forEach((doc) => {
+                items.push(doc.data());
+            });
+            setUsers(items);
+            setLoading(false);
+        });
+    }
+
     useEffect(() => {
-
-        const getUsers = async () => {
-            const data = await getDocs(usersCollectionRef);
-            setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-        }
-
         getUsers();
     }, []);
 
+    if (loading) {
+        return <h1>Loading...</h1>;
+    }
+
     return (
-        <div className="App"> 
-            {users.map((user) => {
-                return ( 
-                    <div>
-                        {" "}
-                        <h1>Name: {user.name} </h1>
-                        <h1>Password: {user.password} </h1>
-                    </div>
-                );
-            })}
+        <div>
+            <h1>Users</h1>
+            {users.map((user) => (
+                <div key={user.id}>
+                    <h2>{user.name}</h2>
+                    <p>{user.password}</p>
+                </div>
+            ))}
         </div>
     );
 }
 
-export default App;
+export default Web;
