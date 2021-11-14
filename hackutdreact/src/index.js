@@ -1,10 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 //import App from './App';
-import App from './backendtest';
+import Web from './Backendtest';
+import './index.css';
+import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-    <backendtest />,
+  <React.StrictMode>
+    <Web />
+  </React.StrictMode>,
   document.getElementById('root')
 );
+
+reportWebVitals();
 
