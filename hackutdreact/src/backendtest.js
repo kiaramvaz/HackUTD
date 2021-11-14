@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import firebase from './firebasedatabase';
-import { collection, getDocs } from 'firebase/firestore';
+import { getDocs } from 'firebase/firestore';
+
+const Clubs = require("./Club");
+Clubs.runtest();
 
 function App(){
     const [users, setUsers] = useState([]);
-    const usersCollectionRef = collection(database, "Users")
+    const usersCollectionRef = firebase.firestore().collection("Users");
     useEffect(() => {
 
         const getUsers = async () => {

@@ -4,6 +4,7 @@ import 'firebase/compat/firestore';
 
 const fs = require('fs')
 
+const fireBase = require("./firebasedatabase")
 const database = firebase.firestore();
 
 const clubCollection = database.collection('Clubs');
@@ -16,9 +17,9 @@ var checkTags = (checkTag) => {
             console.error(err)
             return
         }
-        tags = data.split("\n");
-        tags.foreach((curTag, index) => {
-            if(checkTag == curTag){
+        let tags = data.split("\n");
+        tags.foreach((curTag) => {
+            if(checkTag === curTag){
                 return true;
             }
         })
@@ -32,7 +33,7 @@ var checkClub = (clubName) =>{
     
     clubCollection.get().then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
-            if(doc.data().Name == clubName){
+            if(doc.data().Name === clubName){
                 return true;
             }
         });
@@ -48,10 +49,10 @@ var addClub = (data) => {
     DOC.set({
         Name: data.Name,
         Sections: data.Sections,
-        Tags: data.tags
+        Tags: data.Tags
     })
     .then(() => {console.log("Added club data successfully")})
-    .catch(() => {console.error(error)});
+    .catch((error) => {console.error(error)});
         
     return true;
 }
@@ -62,12 +63,13 @@ var removeClub = (clubName) =>{
     let clubDoc;
 
     clubCollection.get().then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-            if(doc.data().Name == clubName){
+        for(let i = 0 ; i< querySnapshot.length; i++){
+            let doc = querySnapshot[i];
+            if(doc.data().Name === clubName){
                 clubDoc = doc;
                 break;
             }
-        });
+        };
     });
 
     if(!clubDoc){
@@ -84,13 +86,15 @@ var editClub = () =>{
 
 }
 
-runtest = () =>{
+var runtest = () =>{
     addClub({
         Name: "AddtestThings",
         Sections: ["Sec1: thionmgsf", "Sec2: oiahdgfbn"],
         Tags: ["fire", "ice", "water"]
     });
+
+    console.log("Trying to run test")
+
 }
 
-module.exports.runTests = runtest;
-module.exports.addClub =  addClub;
+export { editClub, checkClub, checkTags, removeClub, addClub, runtest } ;
